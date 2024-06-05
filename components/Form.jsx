@@ -9,7 +9,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
         </span>
       </h1>
       <p className='desc text-left max-w-md'>
-        {type} and share amzing prompts with the world, and let your imagination run wild with any AI-powered platform
+        {type} and share amazing prompts with the world, and let your imagination run wild with any AI-powered platform
       </p>
       <form
         onSubmit={handleSubmit}
@@ -38,17 +38,18 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             placeholder='#Tag'
             required
             className='form_input'
+            tabIndex={0}
           />
         </label>
 
-        <div className="flex-end mx-3 mb-5 gap-4">
-          <Link href="/" className='text-gray-500'>
+        <div className="flex justify-end  mx-3 mb-5 gap-4">
+          <Link href={type == "Edit" ? "/profile" : "/"} className='text-black hover:bg-gray-500 hover:text-white transition-all duration-300 ease-in-out px-5 py-1.5 rounded-full' >
             Cancle
           </Link>
           <button
             type='submit'
             disabled={submitting}
-            className='px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white'
+            className='px-5 py-1.5 hover:bg-white hover:text-primary-orange bg-primary-orange rounded-full transition-all duration-300 ease-in-out text-white'
           >
             {submitting ? `${type}...` : type}
           </button>
