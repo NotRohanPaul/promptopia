@@ -7,6 +7,7 @@ import { signIn, signOut, useSession, getProviders } from 'next-auth/react'
 
 const Nav = () => {
   const { data: session } = useSession();
+
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false)
 
@@ -31,11 +32,11 @@ const Nav = () => {
           session?.user ?
             (<div className="flex gap-3 md:gap-5">
               <Link href="/create-prompt" className="black_btn">
-                Create Post
+                Create Prompt
               </Link>
               <button type="button"
                 onClick={() => {
-                  signOut()
+                  signOut({ callbackUrl: '/' })
                 }
                 }
                 className="outline_btn">Sign Out</button>
@@ -100,7 +101,7 @@ const Nav = () => {
                     type="button"
                     onClick={() => {
                       setToggleDropdown(false)
-                      signOut()
+                      signOut({ callbackUrl: '/' })
                     }}
                     className="mt-5 w-full black_btn"
                   >

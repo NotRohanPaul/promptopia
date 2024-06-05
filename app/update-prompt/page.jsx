@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react'
 import { useRouter, useSearchParams } from 'next/navigation'
 
 import Form from '@components/Form'
-import LoginMessage from '@components/LoginMessage'
+import SigninMessage from '@components/SigninMessage'
 
 const EditPrompt = () => {
     const router = useRouter();
@@ -71,7 +71,7 @@ const EditPrompt = () => {
                     handleSubmit={editPrompt}
                 />
                 ) :
-                <LoginMessage />
+                <SigninMessage />
             }
         </div>
     )

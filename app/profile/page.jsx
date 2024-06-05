@@ -1,16 +1,15 @@
 "use client"
 
-import { useState, useEffect } from 'react'
-import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-
 import Profile from '@components/Profile'
+import { useSession } from 'next-auth/react'
+import { useState, useEffect } from 'react'
 
 const MyProfile = () => {
     const router = useRouter()
     const { data: session } = useSession();
     const [posts, setPosts] = useState([]);
-    const [update, forcedUpdate] = useState(0)
+    const [loading, setLoading] = useState(true);
 
 
     useEffect(() => {
@@ -19,10 +18,11 @@ const MyProfile = () => {
             const data = await response.json();
 
             setPosts(data);
+            setLoading(false);
         }
 
         if (session?.user.id) fetchPosts();
-    }, [session?.user.id, update])
+    }, [session?.user.id])
 
     const handleEdit = (post) => {
         router.push(`/update-prompt?id=${post._id}`)
@@ -33,7 +33,6 @@ const MyProfile = () => {
             await fetch(`/api/prompt/${post._id}`, {
                 method: 'DELETE',
             })
-            forcedUpdate(old => old + 1)
         }
         catch (error) {
             console.log(error);
@@ -45,6 +44,7 @@ const MyProfile = () => {
         <Profile
             name="My"
             desc="Welcome to your personalized profile page"
+            isLoading={loading}
             data={posts}
             handleEdit={handleEdit}
             handleDelete={handleDelete}
