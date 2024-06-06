@@ -9,6 +9,7 @@ const handler = NextAuth({
         GoogleProvider({
             clientId: process.env.GOOGLE_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+            checks: ['none']
         })
     ],
     callbacks: {
@@ -18,7 +19,6 @@ const handler = NextAuth({
             })
 
             session.user.id = sessionUser._id.toString();
-
             return session;
         },
         async signIn({ profile }) {
