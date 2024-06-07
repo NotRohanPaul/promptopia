@@ -19,7 +19,6 @@ const Profile = ({ name, desc, data, handleEdit, handleDelete, isLoading }) => {
       </span>
     </h1 >
     <p className='desc text-left'>{desc}</p>
-    {console.log(isLoading)}
     {
       isLoading ?
         (

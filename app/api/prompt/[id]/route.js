@@ -4,7 +4,6 @@ import { connectToDB } from "@utils/database";
 export const GET = async (request, { params }) => {
     try {
         await connectToDB()
-        console.log(Prompt.findById(params.id))
         const prompt = await Prompt.findById(params.id).populate('creator')
         if (!prompt) return new Response("Prompt not found", { status: 404 })
 
