@@ -29,12 +29,7 @@ const Feed = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      // const response = await fetch('/api/prompt/');
-      // const data = await response.json();
-
-      // console.log(data);
-      { console.log(session) }
-      const response = await fetch(`/api/users/${session?.user.id}/posts`);
+      const response = await fetch('/api/prompt/');
       const data = await response.json();
 
       setPosts(data);
