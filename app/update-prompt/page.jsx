@@ -61,7 +61,6 @@ const EditPrompt = () => {
     }
 
     return (
-        <Suspense>
             <div className=''>
                 {session ?
                     (<Form
@@ -75,7 +74,6 @@ const EditPrompt = () => {
                     <SigninMessage />
                 }
             </div>
-        </Suspense>
     )
 }
 
