@@ -29,7 +29,7 @@ const Feed = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch('/api/prompt');
+      const response = await fetch('/api/prompt/');
       const data = await response.json();
 
       console.log(data);
@@ -38,7 +38,7 @@ const Feed = () => {
     }
 
     fetchPosts();
-  }, [session?.user.id])
+  }, [])
 
   const filterPrompts = (searchtext) => {
     const regex = new RegExp(searchtext, "i"); // 'i' flag for case-insensitive search
