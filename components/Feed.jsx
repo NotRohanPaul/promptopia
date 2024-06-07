@@ -29,16 +29,20 @@ const Feed = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch('/api/prompt/');
+      // const response = await fetch('/api/prompt/');
+      // const data = await response.json();
+
+      // console.log(data);
+      { console.log(session) }
+      const response = await fetch(`/api/users/${session?.user.id}/posts`);
       const data = await response.json();
 
-      console.log(data);
       setPosts(data);
-      setLoading(false)
+      setLoading(false);
     }
 
     fetchPosts();
-  }, [])
+  }, [session])
 
   const filterPrompts = (searchtext) => {
     const regex = new RegExp(searchtext, "i"); // 'i' flag for case-insensitive search
