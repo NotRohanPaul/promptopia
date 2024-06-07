@@ -9,15 +9,14 @@ const handler = NextAuth({
         GoogleProvider({
             clientId: process.env.GOOGLE_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-            checks: ['none']
-        })
+        }),
     ],
     callbacks: {
         async session({ session }) {
             const sessionUser = await User.findOne({
                 email: session.user.email
             })
-
+            console.log(session);
             session.user.id = sessionUser._id.toString();
             return session;
         },
